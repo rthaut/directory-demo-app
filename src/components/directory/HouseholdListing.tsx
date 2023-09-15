@@ -24,6 +24,7 @@ export default function HouseholdListing({
 
   return (
     <Link
+      scroll={false}
       href={`?household=${household["Name"]}&head=${household["Head"]}`}
       className="w-full text-left focus:outline-none"
     >

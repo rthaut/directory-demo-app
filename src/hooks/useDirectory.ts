@@ -15,7 +15,7 @@ export function useDirectory() {
     setTimeout(() => {
       setPeople(data);
       setIsLoading(false);
-    }, 50);
+    }, 1500);
   }, []);
 
   const households = useMemo(() => GroupPeopleIntoHouseholds(people), [people]);

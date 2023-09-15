@@ -1,26 +1,22 @@
-import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Fragment } from "react";
 
 export default function SlideOver({
-  onExitComplete,
   children,
+  open,
+  onClose,
 }: {
-  onExitComplete: () => void;
   children: React.ReactNode;
+  open: boolean;
+  onClose: () => void;
 }) {
-  const [open, setOpen] = useState(true);
   return (
-    <Transition.Root
-      as={Fragment}
-      appear
-      show={open}
-      afterLeave={onExitComplete}
-    >
+    <Transition.Root as={Fragment} show={open}>
       <Dialog
         as="div"
         className="fixed inset-0 z-30 overflow-hidden"
-        onClose={() => setOpen(false)}
+        onClose={onClose}
       >
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0 bg-black/25" />
@@ -42,7 +38,7 @@ export default function SlideOver({
                       <button
                         type="button"
                         className="rounded-md bg-gray-600 p-2 text-cyan-400 hover:bg-gray-600 hover:text-cyan-100 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-gray-600"
-                        onClick={() => setOpen(false)}
+                        onClick={onClose}
                       >
                         <div className="flex place-items-center md:hidden">
                           <ArrowLeftIcon
